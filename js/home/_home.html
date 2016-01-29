@@ -5,7 +5,7 @@
 </div>
 <div>
 	
-	<button ng-click="prevMonth()"><</button><div style="width: 200px; padding: 25px; display: inline-block; text-align: center"> {{months[currMonth]}} </div><button ng-click="nextMonth()">></button>
+	<button ng-click="prevMonth()"><</button><div style="width: 200px; padding: 25px; display: inline-block; text-align: center"> {{month.format("MMMM")}} </div><button ng-click="nextMonth()">></button>
 	
 	<table>
 		<thead>
@@ -18,9 +18,10 @@
 			<th>Sat</th>
 		</thead>
 		<tbody>
-			<tr ng-repeat="week in month">
-				<td ng-repeat="day in week">
-					<span>{{day}}</span>
+			<tr ng-repeat="week in weeks">
+				<td ng-repeat="day in week.days">
+					<my-day day="day"></my-day>
+					
 
 
 

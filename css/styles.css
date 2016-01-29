@@ -1,13 +1,26 @@
 .day {
 
-	height: 150px;
-	width: 150px;
+	height: 100px;
+	width: 100px;
 
 	padding: 5px;
 	
 	
 	
 }
+
+.diffMonth {
+	background-color: LightGray;
+
+}
+
+.today {
+
+	background-color: LightBlue;
+
+
+}
+
 
 table, th, td {
    border: 1px solid black;

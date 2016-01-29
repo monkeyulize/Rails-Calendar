@@ -3,7 +3,7 @@ angular.module('myCalendar')
 	return {
 		restrict: 'E',
 		scope: {
-			info: '='
+			day: '='
 		},
 		templateUrl: 'js/directives/calDay.html'
 	};
