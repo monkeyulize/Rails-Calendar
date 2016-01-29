@@ -1,0 +1,14 @@
+.day {
+
+	height: 150px;
+	width: 150px;
+
+	padding: 5px;
+	
+	
+	
+}
+
+table, th, td {
+   border: 1px solid black;
+}

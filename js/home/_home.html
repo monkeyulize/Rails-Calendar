@@ -1,0 +1,36 @@
+<div class="page-header">
+	<h2>My Calendar</h2>
+
+
+</div>
+<div>
+	
+	<button ng-click="prevMonth()"><</button><div style="width: 200px; padding: 25px; display: inline-block; text-align: center"> {{months[currMonth]}} </div><button ng-click="nextMonth()">></button>
+	
+	<table>
+		<thead>
+			<th>Sun</th>
+			<th>Mon</th>
+			<th>Tue</th>
+			<th>Wed</th>
+			<th>Thu</th>
+			<th>Fri</th>
+			<th>Sat</th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="week in month">
+				<td ng-repeat="day in week">
+					<span>{{day}}</span>
+
+
+
+				</td>
+			</tr>
+
+		</tbody>
+	
+	
+	</table>
+
+
+</div>
