@@ -1,6 +1,7 @@
-<div class="day" ng-class="{today: day.isToday, diffMonth: !day.isCurrentMonth}">
+<div class="day" ng-class="{today: day.isToday, diffMonth: !day.isCurrentMonth, selected: day.date.isSame(selected)}">
 	<p>{{day.number}}</p>
-	
-	
 
+
+	<button type="button" ng-click="editDay(day); $event.stopPropagation()" ng-show="day.date.isSame(selected)">Edit</button>
+	<p ng-show="day.dayObj.appt">{{day.dayObj.appt}}</p>
 </div>

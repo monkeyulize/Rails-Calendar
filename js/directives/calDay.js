@@ -2,9 +2,7 @@ angular.module('myCalendar')
 .directive('myDay', function() {
 	return {
 		restrict: 'E',
-		scope: {
-			day: '='
-		},
+		scope: false,
 		templateUrl: 'js/directives/calDay.html'
 	};
 	

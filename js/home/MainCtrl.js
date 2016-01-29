@@ -6,7 +6,7 @@ angular.module('myCalendar')
 	
 	$scope.day = moment();
 
-	
+
 	$scope.current = $scope.day.clone();
 	$scope.month = $scope.current.clone();
 
@@ -36,7 +36,8 @@ angular.module('myCalendar')
 				number: date.date(),
 				isCurrentMonth: date.month() === month.month(),
 				isToday: $scope.day.isSame(date, 'day'),
-				date: date
+				dayObj: {},
+				date: date.clone()
 			});
 			date.add(1, 'day');
 
@@ -52,7 +53,7 @@ angular.module('myCalendar')
 		date.date(1);
 		date.day(0);
 
-		 while(!done) {
+		while(!done) {
 
 			weeks.push({days: createWeek(thisDate, date.clone())});
 			date.add(1, 'week');
@@ -61,10 +62,25 @@ angular.module('myCalendar')
 			}
 
 
-		 }
-		 $scope.weeks = weeks;
-		 console.log(weeks);
+		}
+		$scope.weeks = weeks;
+		console.log(weeks);
 	};
+	$scope.select = function(day) {
+		if(day.date === $scope.selected) {
+			$scope.selected = {};
+		} else {
+			$scope.selected = day.date;
+		}
+		
+	};
+
+
+	$scope.editDay = function(day) {
+		console.log("Editing day");
+		day.dayObj.appt = "Do dishes";
+	};
+
 	createMonth($scope.current.clone());
 
 	

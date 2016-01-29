@@ -20,7 +20,7 @@
 		<tbody>
 			<tr ng-repeat="week in weeks">
 				<td ng-repeat="day in week.days">
-					<my-day day="day"></my-day>
+					<my-day day="day" selected-day="selected" ng-click="select(day)"></my-day>
 					
 
 

@@ -21,6 +21,11 @@
 
 }
 
+.selected {
+	font-weight: bold;
+	background-color: CornflowerBlue;
+}
+
 
 table, th, td {
    border: 1px solid black;
