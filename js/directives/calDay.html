@@ -1,7 +1,16 @@
 <div class="day" ng-class="{today: day.isToday, diffMonth: !day.isCurrentMonth, selected: day.date.isSame(selected)}">
 	<p>{{day.number}}</p>
 
+	<ul>
+		<li ng-repeat="appt in day.dayObj.appt track by $index">
+		<a ng-click="removeAppt($index, day); $event.stopPropagation()"><span class="glyphicon glyphicon-minus"></span></a>
+		{{appt}}
+		</li>
+	</ul>
 
-	<button type="button" ng-click="editDay(day); $event.stopPropagation()" ng-show="day.date.isSame(selected)">Edit</button>
-	<p ng-show="day.dayObj.appt">{{day.dayObj.appt}}</p>
+
+
+	<button uib-popover-template="templateUrl"  popover-is-open="isOpen"  popover-placement="right" type="button" ng-click="$event.stopPropagation(); open()" ng-show="day.date.isSame(selected)" class="btn btn-default btn-xs edit"><span class="glyphicon glyphicon-plus-sign"></span></button>
+	
+
 </div>

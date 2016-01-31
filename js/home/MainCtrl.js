@@ -36,7 +36,7 @@ angular.module('myCalendar')
 				number: date.date(),
 				isCurrentMonth: date.month() === month.month(),
 				isToday: $scope.day.isSame(date, 'day'),
-				dayObj: {},
+				dayObj: {appt: []},
 				date: date.clone()
 			});
 			date.add(1, 'day');
@@ -64,7 +64,6 @@ angular.module('myCalendar')
 
 		}
 		$scope.weeks = weeks;
-		console.log(weeks);
 	};
 	$scope.select = function(day) {
 		if(day.date === $scope.selected) {
@@ -74,11 +73,31 @@ angular.module('myCalendar')
 		}
 		
 	};
+	$scope.action = function() {
+
+		console.log("is open");
+	}
+	$scope.editPopover = {
+		openPop: false,
+		open: function() {
+			$scope.editPopover.openPop = true;
+		},
+		close: function() {
+			$scope.editPopover.openPop = false;
+		},
+		templateUrl: 'js/directives/editPopover.html'
+	};	
+	$scope.removeAppt = function(index, day) {
+		day.dayObj.appt.splice(index, 1);
+	};
+	$scope.editDay = function(editObj, day) {
 
 
-	$scope.editDay = function(day) {
-		console.log("Editing day");
-		day.dayObj.appt = "Do dishes";
+		if(editObj) {
+			if(editObj.appt) day.dayObj.appt.push(editObj.appt);
+		}
+
+		
 	};
 
 	createMonth($scope.current.clone());

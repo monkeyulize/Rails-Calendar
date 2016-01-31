@@ -3,12 +3,18 @@
 	height: 100px;
 	width: 100px;
 
-	padding: 5px;
 	
+	position: relative;
 	
 	
 }
 
+div.day p {
+
+	padding: 5px;
+	margin-bottom: 0px;
+
+}
 .diffMonth {
 	background-color: LightGray;
 
@@ -26,7 +32,30 @@
 	background-color: CornflowerBlue;
 }
 
+ul {
+	list-style-type: none;
+	padding-left: 5px;
+	overflow: auto;
+	height: 70%;
+	width: 100%;
+
+}
+
+li {
+
+	white-space: nowrap;
+}
+
+button.edit {
+	width: 30%;
+	position: absolute;
+	top: 0;
+	right: 0;
+
+}
 
 table, th, td {
    border: 1px solid black;
+   position: relative;
+   table-layout: fixed;
 }

@@ -1,0 +1,9 @@
+<form class="form-inline" ng-click="$event.stopPropagation()">
+	<div class="form-group">
+		Add appointment:
+		<input type="text" class="form-control" ng-model="edit.appt">{{edit.app}}</input>
+	</div>
+
+	<button type="submit" class="btn btn-primary btn-sm" ng-click="editDay(edit, day); edit.appt = ''; close()"><span class="glyphicon glyphicon-plus-sign"></span></button>
+</form>
+

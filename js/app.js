@@ -1,5 +1,5 @@
-angular.module('myCalendar', ['ui.router'])
-.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+angular.module('myCalendar', ['ui.router', 'ui.bootstrap'])
+.config(['$stateProvider', '$urlRouterProvider', '$uibTooltipProvider', function($stateProvider, $urlRouterProvider, $uibTooltipProvider) {
 	$stateProvider
 		.state('home', {
 			url: '/home',
@@ -9,6 +9,6 @@ angular.module('myCalendar', ['ui.router'])
 		
 	$urlRouterProvider.otherwise('home');
 	
-	
+
 	
 }]);

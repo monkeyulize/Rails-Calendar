@@ -5,7 +5,7 @@
 </div>
 <div>
 	
-	<button ng-click="prevMonth()"><</button><div style="width: 200px; padding: 25px; display: inline-block; text-align: center"> {{month.format("MMMM")}} </div><button ng-click="nextMonth()">></button>
+	<a ng-click="prevMonth()"><span class="glyphicon glyphicon-chevron-left"></span></a><div style="width: 200px; padding: 25px; display: inline-block; text-align: center"> {{month.format("MMMM")}} </div><a ng-click="nextMonth()"><span class="glyphicon glyphicon-chevron-right"></span></a>
 	
 	<table>
 		<thead>
