@@ -2,9 +2,9 @@
 	<p>{{day.number}}</p>
 
 	<ul>
-		<li ng-repeat="appt in day.dayObj.appt track by $index">
-		<a ng-click="removeAppt($index, day); $event.stopPropagation()"><span class="glyphicon glyphicon-minus"></span></a>
-		{{appt}}
+		<li ng-repeat="appt in day.appts track by $index">
+			<a ng-click="removeAppt($index, day); $event.stopPropagation()"><span class="glyphicon glyphicon-minus"></span></a>
+			{{appt.body}}
 		</li>
 	</ul>
 

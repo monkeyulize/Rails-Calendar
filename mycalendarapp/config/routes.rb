@@ -3,10 +3,13 @@ Rails.application.routes.draw do
   root to: 'application#angular'
 
 
-  resources :days, only: [:create, :index, :show] do
-    member do
-      post '/addevent' => 'days#addevent'
+  resources :days, only: [:create, :index, :show, :destroy] do
+    resources :appts, only: [:create, :index, :destroy] do
+      member do
+        post '/appt' => 'appts#appt'
+      end
     end
+    
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

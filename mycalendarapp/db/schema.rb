@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160201180957) do
+ActiveRecord::Schema.define(version: 20160202171251) do
+
+  create_table "appts", force: true do |t|
+    t.string   "body"
+    t.integer  "day_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "appts", ["day_id"], name: "index_appts_on_day_id"
 
   create_table "days", force: true do |t|
     t.date     "date"
