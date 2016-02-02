@@ -1,12 +1,10 @@
 angular.module('myCalendar')
-.controller('MainCtrl', ['$scope', function($scope) {
-	$scope.months = ["January", "February", "March", "April", "May", "June", "July",
-		"August", "September", "October", "November", "December"];
-	$scope.days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+.controller('MainCtrl', ['$scope', 'days', function($scope, days) {
+
 	
 	$scope.day = moment();
 
-
+	$scope.days = days.days;
 	$scope.current = $scope.day.clone();
 	$scope.month = $scope.current.clone();
 
@@ -32,11 +30,16 @@ angular.module('myCalendar')
 	var createWeek = function(month, date) {
 		var days = [];
 		for(var i = 0; i < 7; i++) {
+			var o = {'appt': []};
+			var filter = $scope.days.filter(function(v) { return moment(v['date']).isSame(date, 'day')});
+			if (filter[0]) {
+				o = JSON.parse(filter[0].dayObj);
+			}
 			days.push({
 				number: date.date(),
 				isCurrentMonth: date.month() === month.month(),
 				isToday: $scope.day.isSame(date, 'day'),
-				dayObj: {appt: []},
+				dayObj: o,
 				date: date.clone()
 			});
 			date.add(1, 'day');
@@ -79,11 +82,17 @@ angular.module('myCalendar')
 		day.dayObj.appt.splice(index, 1);
 	};
 	$scope.editDay = function(editObj, day) {
-
-
+		
 		if(editObj) {
 			if(editObj.appt) day.dayObj.appt.push(editObj.appt);
 		}
+		console.log(day.date.startOf('day').toDate());
+		days.create({
+			date: day.date.toDate(),
+			dayObj: editObj.appt
+		});
+
+		
 
 		
 	};

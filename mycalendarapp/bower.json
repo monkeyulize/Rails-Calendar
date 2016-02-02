@@ -1,0 +1,25 @@
+{
+  "name": "mycalendarapp",
+  "authors": [
+    "monkeyulize <sholberg92@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.9",
+    "angular-ui-router": "~0.2.17",
+    "bootstrap": "~3.3.6",
+    "angular-bootstrap": "~1.1.2",
+    "moment": "~2.11.1"
+  }
+}
