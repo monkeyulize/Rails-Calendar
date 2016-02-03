@@ -6,8 +6,8 @@ angular.module('myCalendar', ['ui.router', 'ui.bootstrap', 'templates'])
 			templateUrl: 'home/_home.html',
 			controller: 'MainCtrl',
 			resolve: {
-				dayPromise: ['days', function(days) {
-					return days.getAll();
+				dayPromise: ['daysService', function(daysService) {
+					return daysService.getAll();
 				}]
 			}		
 		});

@@ -24,23 +24,10 @@ class DaysController < ApplicationController
 			end
 
 		end
-
-
-		# day = Day.where(date: Date.parse(params[:date])).first
-		# puts day
-
-		# if day 
-		# 	addevent
-		# else 
-		# 	dp = day_params
-		# 	dp[:dayObj] = "{\"appt\": [" + dp[:dayObj] + "]}"
-		# 	puts dp
-		# 	respond_with Day.create(dp)
-		# end
 	end
 
 
-	def 
+
 
 	def show
 		respond_with Day.find(params[:id])

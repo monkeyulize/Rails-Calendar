@@ -15,6 +15,15 @@ class ApptsController < ApplicationController
 
 	end
 
+	def destroy
+		day = Day.find(params[:day_id])
+		respond_with day.appts.destroy(params[:id])
+
+
+	end
+
+
+
 	private
 	def appt_params
 		params.require(:appt).permit(:body)

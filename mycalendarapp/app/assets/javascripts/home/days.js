@@ -1,5 +1,5 @@
 angular.module('myCalendar')
-.factory('days', ['$http', function($http) {
+.factory('daysService', ['$http', function($http) {
 	var o = {
 		days: []
 	};
@@ -18,17 +18,14 @@ angular.module('myCalendar')
 		});
 	};
 	o.create = function(day, callback) {
-		// console.log(day)
 		return $http.post('/days.json', day).success(function(data) {
-			// o.days.push(data);
-			// console.log(data);
 			callback(data);
 		});
 	};
 
-	o.delete = function(day) {
-		return $http.delete('/days.json', day).success(function(data) {
-
+	o.deleteAppt = function(day, appt) {
+		return $http.delete('/days/' + day.dbId + '/appts/' + appt.id + '.json').success(function(data) {
+			console.log(data);
 		});
 
 	};

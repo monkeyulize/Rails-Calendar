@@ -1,11 +1,9 @@
 angular.module('myCalendar')
-.controller('MainCtrl', ['$scope', 'days', function($scope, days) {
+.controller('MainCtrl', ['$scope', 'daysService', function($scope, daysService) {
 
 	
 	$scope.day = moment();
 
-	$scope.days = days.days;
-	// console.log($scope.days);
 	$scope.current = $scope.day.clone();
 	$scope.month = $scope.current.clone();
 
@@ -13,13 +11,11 @@ angular.module('myCalendar')
 	$scope.prevMonth = function() {
 		$scope.current.subtract(1, 'month');
 		$scope.month.subtract(1, 'month');
-
 		createMonth($scope.current.clone());
 	}
 	$scope.nextMonth = function() {
 		$scope.current.add(1, 'month');
 		$scope.month.add(1, 'month');
-
 		createMonth($scope.current.clone());
 	}
 
@@ -33,12 +29,10 @@ angular.module('myCalendar')
 		for(var i = 0; i < 7; i++) {
 			var id = -1;
 			var appts = [];
-			var filter = $scope.days.filter(function(v) { return moment(v['date']).isSame(date, 'day')});
+			var filter = daysService.days.filter(function(v) { return moment(v['date']).isSame(date, 'day')});
 			if (filter[0]) {
-				// console.log(filter[0]);
 				id = filter[0].id;
 				appts = filter[0].appts;
-				// console.log(id);
 			}
 			days.push({
 				dbId: id,
@@ -51,7 +45,6 @@ angular.module('myCalendar')
 			date.add(1, 'day');
 
 		}
-		// console.log(days);
 		return days;
 		
 
@@ -86,22 +79,23 @@ angular.module('myCalendar')
 	};
 
 	
-	$scope.removeAppt = function(index, day) {
-		day.dayObj.appt.splice(index, 1);
+	$scope.removeAppt = function(day, appt) {
+		daysService.deleteAppt(day, appt);
+		day.appts = day.appts.filter(function(e) {
+			return e.id != appt.id;
+		});
+		daysService.getAll();
 	};
 	$scope.editDay = function(editObj, day) {
-		console.log(editObj);
-		console.log(day);
 		var o;
 		if(editObj) o = editObj.appt; 
 		if(o) {
 			if(day.dbId == -1) {
-				days.create(
+				daysService.create(
 					{date: day.date.toDate()},
 					function(data) {
-						console.log(data);
 						day.dbId = data.id;
-						days.addAppt(
+						daysService.addAppt(
 							day, 
 							{body: o},
 							function(data) {
@@ -113,7 +107,7 @@ angular.module('myCalendar')
 
 				);
 			} else {
-				days.addAppt(
+				daysService.addAppt(
 					day, 
 					{body: o},
 					function(data) {
@@ -122,7 +116,8 @@ angular.module('myCalendar')
 				);
 			}
 		}
-
+		daysService.getAll();
+		
 	};
 
 	createMonth($scope.current.clone());
