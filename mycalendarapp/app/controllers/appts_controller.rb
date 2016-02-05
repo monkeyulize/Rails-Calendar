@@ -1,7 +1,9 @@
 class ApptsController < ApplicationController
+	before_filter :authenticate_user!
+
 	def create
 		day = Day.find(params[:day_id])
-		appt = day.appts.create(appt_params)
+		appt = day.appts.create(appt_params.merge(user_id: current_user.id))
 		appts = day.appts.where(:day_id => params[:day_id])
 		respond_to do |format|
 			format.json do 

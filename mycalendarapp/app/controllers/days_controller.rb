@@ -1,7 +1,10 @@
 class DaysController < ApplicationController
+	before_filter :authenticate_user!, only: [:index, :create]
+
 
 	def index
-		respond_with Day.all
+		
+		respond_with Day.where(user_id: current_user.id);
 	end
 
 	def create
@@ -10,7 +13,7 @@ class DaysController < ApplicationController
 
 
 
-			respond_with Day.create(day_params)
+			respond_with Day.create(day_params.merge(user_id: current_user.id))
 		else
 			appts = day.appts.where(:day_id => day[:id])
 

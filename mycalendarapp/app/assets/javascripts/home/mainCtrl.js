@@ -50,6 +50,7 @@ angular.module('myCalendar')
 
 	};
 	var createMonth = function(date) {
+		daysService.getAll();
 		var weeks = [];
 		var thisDate = date.clone();
 		
