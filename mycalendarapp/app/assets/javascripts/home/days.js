@@ -13,7 +13,7 @@ angular.module('myCalendar')
 			
 		}, function errorCallback(response) {
 			console.log("Error");
-
+			callback();
 		});
 
 	};
