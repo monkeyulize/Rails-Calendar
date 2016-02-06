@@ -50,25 +50,28 @@ angular.module('myCalendar')
 
 	};
 	var createMonth = function(date) {
-		daysService.getAll();
-		var weeks = [];
-		var thisDate = date.clone();
-		
-		var done = false;
-		date.date(1);
-		date.day(0);
+		daysService.getAll(function() {
+			var weeks = [];
+			var thisDate = date.clone();
+			
+			var done = false;
+			date.date(1);
+			date.day(0);
 
-		while(!done) {
+			while(!done) {
 
-			weeks.push({days: createWeek(thisDate, date.clone())});
-			date.add(1, 'week');
-			if(!date.isSame(thisDate, 'month')) {
-				done = true;
+				weeks.push({days: createWeek(thisDate, date.clone())});
+				date.add(1, 'week');
+				if(!date.isSame(thisDate, 'month')) {
+					done = true;
+				}
+
+
 			}
+			$scope.weeks = weeks;
+			
+		});
 
-
-		}
-		$scope.weeks = weeks;
 	};
 	$scope.select = function(day) {
 		if(day.date === $scope.selected) {
@@ -85,7 +88,7 @@ angular.module('myCalendar')
 		day.appts = day.appts.filter(function(e) {
 			return e.id != appt.id;
 		});
-		daysService.getAll();
+		// daysService.getAll();
 	};
 	$scope.editDay = function(editObj, day) {
 		var o;
@@ -112,12 +115,13 @@ angular.module('myCalendar')
 					day, 
 					{body: o},
 					function(data) {
+						console.log(data)
 						day.appts.push(data.appt);
 					}
 				);
 			}
 		}
-		daysService.getAll();
+		// daysService.getAll();
 		
 	};
 

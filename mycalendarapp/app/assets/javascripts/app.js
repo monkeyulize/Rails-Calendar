@@ -5,13 +5,13 @@ angular.module('myCalendar', ['ui.router', 'ui.bootstrap', 'templates', 'Devise'
 			url: '/home',
 			templateUrl: 'home/_home.html',
 			controller: 'MainCtrl',
-			resolve: {
-				dayPromise: ['daysService', 'Auth', function(daysService, Auth) {
-					return daysService.getAll();
+			// resolve: {
+			// 	dayPromise: ['daysService', 'Auth', function(daysService, Auth) {
+			// 		return daysService.getAll();
 
 					
-				}]
-			}		
+			// 	}]
+			// }		
 		})
 		.state('login', {
 			url: '/login',

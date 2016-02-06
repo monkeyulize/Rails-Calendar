@@ -8,23 +8,17 @@ class DaysController < ApplicationController
 	end
 
 	def create
-		day = Day.where(date: Date.parse(params[:date])).first
+		day = Day.where(date: Date.parse(params[:date])).where(user_id: current_user.id).first
 		if !day
 
 
 
 			respond_with Day.create(day_params.merge(user_id: current_user.id))
 		else
-			appts = day.appts.where(:day_id => day[:id])
+			# appts = day.appts.where(:day_id => day[:id])
 
-			respond_to do |format|
-				format.json do 
-					render json: {
-						day: day,
-						appts: appts
-					}.to_json
-				end
-			end
+			respond_with day
+			
 
 		end
 	end

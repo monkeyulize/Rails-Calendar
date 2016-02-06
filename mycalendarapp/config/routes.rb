@@ -6,9 +6,7 @@ Rails.application.routes.draw do
 
   resources :days, only: [:create, :index, :show, :destroy] do
     resources :appts, only: [:create, :index, :destroy] do
-      member do
-        post '/appt' => 'appts#appt'
-      end
+
     end
     
   end
